@@ -9,7 +9,7 @@ import {
     deleteOption
 } from "../controller/polling.controller.js"
 
-const router = express.Router();
+const router = express.Router();    
 
 // GET API ENDPOINTS.
 // Get a single question.
@@ -27,8 +27,8 @@ router.route("/options/:id/add_vote").get(addVote);
 
 // DELETE API ENDPOINTS.
 // Delete a question.
-router.route("/questions/:id/delete").get(deleteQuestion);
+router.route("/questions/:id/delete").delete(deleteQuestion);
 // Delete a option.
-router.route("/options/:id/delete").get(deleteOption);
+router.route("/options/:id/delete").delete(deleteOption);
 
 export default router;
