@@ -53,7 +53,7 @@ export const createOption = async (req, res, next) => {
 
         const updatedQuestion = await findQuestionById(id);
 
-        let link = "http://localhost:8080/options";
+        let link = "https://polling-system-api-syou.onrender.com/options";
         updatedQuestion.options.forEach(option => {
             console.log(`${link}/${option._id}/add_vote`);
             option.link_to_vote = `${link}/${option.id}/add_vote`
