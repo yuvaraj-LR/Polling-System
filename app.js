@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/questions/", pollingRoutes);
+app.use("/", pollingRoutes);
 
 app.use(errorHandlerMiddleware);
 
