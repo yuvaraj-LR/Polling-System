@@ -9,8 +9,6 @@ Welcome to the Polling System API project. This API allows users to create polls
 - [Usage](#usage)
 - [Endpoints](#endpoints)
 - [API Documentation](#api-documentation)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
