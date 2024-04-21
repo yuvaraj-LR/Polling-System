@@ -7,6 +7,7 @@ import {
     deleteOptionRepo
 } from "../model/polling.repository.js"
 
+// Fetch all the questions.
 export const getQuestion = async (req, res, next) => {
     try {
         const {id} = req.params;
@@ -23,6 +24,7 @@ export const getQuestion = async (req, res, next) => {
     }
 }
 
+// Create a new question.
 export const createQuestion = async (req, res, next) => {
     try {
         const {title} = req.body;
@@ -35,6 +37,7 @@ export const createQuestion = async (req, res, next) => {
     }
 }
 
+// Create a new option for particular question.
 export const createOption = async (req, res, next) => {
     try {
         const {id} = req.params;
@@ -48,7 +51,6 @@ export const createOption = async (req, res, next) => {
         const {option} = req.body;
         await createOptionRepo(option, id);
 
-        // Fetch the question again after creating the option
         const updatedQuestion = await findQuestionById(id);
 
         let link = "http://localhost:8080/options";
@@ -65,6 +67,7 @@ export const createOption = async (req, res, next) => {
     }
 }
 
+// Add vote to particular question.
 export const addVote = async (req, res, next) => {
     try {
         const {id} = req.params;
@@ -77,7 +80,6 @@ export const addVote = async (req, res, next) => {
         }
 
         const optionIndex = questionPresent.options.findIndex(o => o._id.toString() === id );
-
         if(!optionIndex && optionIndex != 0) {
             return next(new ErrorHandler(404, "Option not found."))
         }
@@ -92,6 +94,7 @@ export const addVote = async (req, res, next) => {
     }
 }
 
+// Delete the entire question and their options.
 export const deleteQuestion = async (req, res, next) => {
     try {
         const {id} = req.params;
@@ -121,6 +124,7 @@ export const deleteQuestion = async (req, res, next) => {
     }
 }
 
+// Delete a particular option.
 export const deleteOption = async (req, res, next) => {
     try {
         const {id} = req.params;
@@ -138,7 +142,6 @@ export const deleteOption = async (req, res, next) => {
         if(!optionIndex && optionIndex != 0) {
             return next(new ErrorHandler(404, "Option not found."))
         }
-
         questionPresent.options.splice(1, optionIndex);
         await questionPresent.save();
 
