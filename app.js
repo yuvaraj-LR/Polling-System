@@ -15,6 +15,10 @@ app.use(cookieParser());
 
 app.use("/", pollingRoutes);
 
+app.get("/", (req, res) => {
+    res.send("Welcome to our server.")
+})
+
 app.use(errorHandlerMiddleware);
 
 export default app;
